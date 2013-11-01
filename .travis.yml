@@ -1,0 +1,15 @@
+language: ruby
+rvm:
+- 2.0.0
+script:
+- bundle exec rake db:migrate --trace
+- RAILS_ENV=test bundle exec rake db:migrate --trace
+- bundle exec rake db:test:prepare
+- bundle exec rspec -f d spec/
+deploy:
+  provider: heroku
+  api_key:
+    secure: fWjcKExWpxvUv4PoYiLDd1pe/PbN8+Bhr/2nTfLyRfWjb3CzitDxNckUbJfmtpI3YCiG47zgyA1iAqSTXRlIA6/2Yn7i/mQScKbr9r4jWW8rJFb8JiM2fvmU6cu7qAoYBDXpOW5NvINM4YcHvEJqObnLWqxVHSpLogk6jf83H0A=
+  app: aplusplus
+  on:
+    repo: a-plus-plus/backend

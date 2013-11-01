@@ -1,0 +1,23 @@
+<header class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <div class="container">
+
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <%= link_to "A++", :root , :class => "navbar-brand"%>
+    </div><!-- /.navbar-header-->
+
+    <div class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <%= nav_link 'Questionnaires', questionnaires_path %>
+        <%= nav_link 'Answer Packs', answer_packs_path %>
+        <%= nav_link 'Text Answers', text_answers_path %>
+      </ul>
+        
+    </div><!--/.navbar-collapse -->
+  </div>
+</header>
+  

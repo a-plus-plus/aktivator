@@ -1,0 +1,78 @@
+@import "twitter/bootstrap";
+
+body { 
+	padding-top: 60px; 
+	padding-bottom: 25px;
+}
+
+table{
+	@extend .table, .table-striped, .table-hover;
+	tbody tr a{
+		&.edit{
+			@extend .label-warning, .label;
+		}
+		&.destroy{
+			@extend .label, .label-danger;
+		}
+	}
+}
+
+button, input[type=submit] {
+	@extend .btn;
+	&.new {
+		@extend .btn, .btn-primary;
+	}
+	&.sign_in {
+		@extend .btn-success;
+	}
+	&.register {
+		@extend .btn-primary;
+	}
+}
+a.new {
+	@extend .btn, .btn-primary;
+}
+a.edit{
+	@extend .btn, .btn-warning;
+}
+
+
+form {
+	input {
+		&[type=text], &[type=password]{
+			@extend .form-control;
+		}
+	}
+	#error_explanation {
+		h2 {
+			@extend .alert;
+			@extend .alert-danger;
+		}
+		
+		ul {
+			list-style: none;
+	    	margin: 0 0 18px 0;
+	    	@extend .alert;
+	    	@extend .alert-danger;
+		}
+	}
+
+	.field_with_errors {
+		@extend .has-error;
+	}
+
+	.field {
+		@extend .form-group;
+		input, select {
+			@extend .form-control;
+		}
+	}
+
+	.actions {
+		@extend .form-actions;
+		input {
+			@extend .btn;
+			@extend .btn-primary;
+		}
+	}
+}
