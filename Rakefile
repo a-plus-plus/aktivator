@@ -3,4 +3,9 @@
 
 require File.expand_path('../config/application', __FILE__)
 
+
+task :watch do 
+	sh 'bundle exec guard'
+
+end
 Aktivator::Application.load_tasks

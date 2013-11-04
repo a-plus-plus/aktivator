@@ -23,7 +23,7 @@ describe SurveyAnswersController do
   # This should return the minimal set of attributes required to create a valid
   # SurveyAnswer. As you add validations to SurveyAnswer, be sure to
   # adjust the attributes here as well.
-  let(:valid_attributes) { { "survey" => "" } }
+  let(:valid_attributes) { { "survey_id" =>  } }
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in

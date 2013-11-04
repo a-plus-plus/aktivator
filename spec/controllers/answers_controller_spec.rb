@@ -23,7 +23,7 @@ describe AnswersController do
   # This should return the minimal set of attributes required to create a valid
   # Answer. As you add validations to Answer, be sure to
   # adjust the attributes here as well.
-  let(:valid_attributes) { { "option" => "" } }
+  let(:valid_attributes) { { "option_id" => 1 } }  
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
@@ -106,8 +106,8 @@ describe AnswersController do
         # specifies that the Answer created on the previous line
         # receives the :update_attributes message with whatever params are
         # submitted in the request.
-        Answer.any_instance.should_receive(:update).with({ "option" => "" })
-        put :update, {:id => answer.to_param, :answer => { "option" => "" }}, valid_session
+        Answer.any_instance.should_receive(:update).with({ "option_id" => "1" })
+        put :update, {:id => answer.to_param, :answer => { "option_id" => "1"}}, valid_session
       end
 
       it "assigns the requested answer as @answer" do

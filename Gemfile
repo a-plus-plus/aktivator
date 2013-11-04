@@ -7,6 +7,11 @@ gem 'rails', '4.0.0'
 group :development, :test do
   gem 'sqlite3'
 end
+group :development do 
+   gem 'guard-rspec', require: false
+   gem 'terminal-notifier-guard', require:false
+   gem 'libnotify', require:false
+end
 
 # Use PostgreSQL as the database for Active Record in development
 group :production do
