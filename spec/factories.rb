@@ -1,21 +1,22 @@
 FactoryGirl.define do
 
 	factory :answer do
+		option
+		response
 	end	
 
 	factory :option do
+		question
 	end
 
 	factory :question do
-		option		
+		survey
 	end
 
 	factory :survey do
-		question
-		survey_answer
 	end
 
-	factory :survey_answer do 
-		answer 
+	factory :response do 
+		survey
 	end 
 end

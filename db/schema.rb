@@ -11,18 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131104091824) do
+ActiveRecord::Schema.define(version: 20131104113527) do
 
   create_table "answers", force: true do |t|
     t.integer  "option_id"
     t.text     "value"
-    t.integer  "surveyAnswer_id"
+    t.integer  "response_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "answers", ["option_id"], name: "index_answers_on_option_id"
-  add_index "answers", ["surveyAnswer_id"], name: "index_answers_on_surveyAnswer_id"
+  add_index "answers", ["response_id"], name: "index_answers_on_response_id"
 
   create_table "options", force: true do |t|
     t.integer  "question_id"
