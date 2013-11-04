@@ -106,8 +106,8 @@ describe SurveyAnswersController do
         # specifies that the SurveyAnswer created on the previous line
         # receives the :update_attributes message with whatever params are
         # submitted in the request.
-        SurveyAnswer.any_instance.should_receive(:update).with({ "survey" => "" })
-        put :update, {:id => survey_answer.to_param, :survey_answer => { "survey" => "" }}, valid_session
+        SurveyAnswer.any_instance.should_receive(:update).with({ "survey_id" => 1 })
+        put :update, {:id => survey_answer.to_param, :survey_answer => { "survey_id" => 1 }}, valid_session
       end
 
       it "assigns the requested survey_answer as @survey_answer" do
