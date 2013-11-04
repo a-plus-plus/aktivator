@@ -1,15 +1,15 @@
 require 'spec_helper'
 
-describe "survey_answers/show" do
+describe "responses/show" do
   before(:each) do
-    @survey_answer = assign(:survey_answer, stub_model(SurveyAnswer,
-      :survey => nil
+    @response = assign(:response, stub_model(Response,
+      :survey_id => 1
     ))
   end
 
   it "renders attributes in <p>" do
     render
     # Run the generator again with the --webrat flag if you want to use webrat matchers
-    rendered.should match(//)
+    rendered.should match(/1/)
   end
 end

@@ -1,4 +1,4 @@
 class Answer < ActiveRecord::Base
   belongs_to :option
-  belongs_to :surveyAnswer
+  belongs_to :response
 end

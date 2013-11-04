@@ -1,10 +1,10 @@
 Aktivator::Application.routes.draw do
 
+  resources :responses
+
   root to: "surveys#index"
 
   resources :answers
-
-  resources :survey_answers
 
   resources :options
 
