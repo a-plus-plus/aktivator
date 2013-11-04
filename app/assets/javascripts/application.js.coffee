@@ -17,6 +17,6 @@
 #= require angular-resource
 #= require jquery_ujs
 #= require turbolinks
+#= require ./app
 #= require_tree .
-
-window.App = angular.module('Aktivator', ['ngResource'])
+#= require_tree ./angular
