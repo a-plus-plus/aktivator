@@ -106,8 +106,8 @@ describe OptionsController do
         # specifies that the Option created on the previous line
         # receives the :update_attributes message with whatever params are
         # submitted in the request.
-        Option.any_instance.should_receive(:update).with({ "question" => "" })
-        put :update, {:id => option.to_param, :option => { "question" => "" }}, valid_session
+        Option.any_instance.should_receive(:update).with({ "question_id" => "1" })
+        put :update, {:id => option.to_param, :option => { "question_id" => "1" }}, valid_session
       end
 
       it "assigns the requested option as @option" do
