@@ -9,7 +9,7 @@ script:
 deploy:
   provider: heroku
   api_key:
-    secure: QYdJsI9wMWf3Vu2HP+sdKKQPP1rCBaxatdp207OEc0OfbSxo/KVWUTnki6B10xWZCqHa5dJQx7UJNg2G4a7NsDexMCw3YWiK5gLH499fpGyq1zYdJL7cGp3lfQZTVbHF/5KgpECAGo9r6NpA06oJ16rvDhEtE1f3MaWhj3v4LBU=
+    secure: F8MheYAblJmxl9kqTjtZWpR1y6OmjHx7nl9c+ShQzzD6X5EZLsKNyLXo0ysqzq1Hv/jifUMx9bl3lJ53xPBgKpRJV0OZ4jATB5836TNCU+hLliULvivKM08XMkZ/IDW+S611J55I4bAyvvfdq/neHeIH2zv+w84NY3V+AlfBNeo=
   app: aktivator-plusplus
   on:
     repo: a-plus-plus/aktivator
