@@ -1,4 +1,4 @@
-<%= form_for(@survey) do |f| %>
+<%= form_for @survey, html: {data:{'survey-post' => @survey.id||0}, "ng-submit" => "post(survey, $event)", "ng-controller"=>"SurveyCtrl"} do |f| %>
   <% if @survey.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@survey.errors.count, "error") %> prohibited this survey from being saved:</h2>
@@ -12,10 +12,23 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :title %><br>
-    <%= f.text_field :title %>
+    <%= f.label :title%><br>
+    <%= f.text_field :title, data:{'ng-model' => 'survey.title'}%>
   </div>
+
+  <div class="field">
+    <%= f.fields_for :questions, html: {data:{'ng-repeat' => 'question in questions'}} do |q| %>
+      <fieldset>
+      <%= q.label :title, "Question" %><br />
+      <%= q.text_area :title, data:{'ng-model' => 'question.title'} %><br />
+      <%= q.label :kind, "Type of Question" %>
+      <%= q.select :kind, options_for_select([ "Radiobutton", "Checkbox","Textfield" ]), data:{'ng-model' => 'question.kind'} %>
+    </fieldset>
+    <% end %>
+  </div>
+  
   <div class="actions">
     <%= f.submit %>
   </div>
+
 <% end %>
