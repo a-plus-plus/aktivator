@@ -1,4 +1,4 @@
 class Option < ActiveRecord::Base
   belongs_to :question
-  has_many :answers
+  validates :question, presence: true
 end

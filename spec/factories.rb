@@ -1,8 +1,8 @@
 FactoryGirl.define do
 
 	factory :answer do
-		option
 		response
+		question
 	end	
 
 	factory :option do
