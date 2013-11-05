@@ -26,7 +26,7 @@ class SurveysController < ApplicationController
   # POST /surveys.json
   def create
     @survey = Survey.new(survey_params)
-
+    #debugger
     respond_to do |format|
       if @survey.save
         format.html { redirect_to @survey, notice: 'Survey was successfully created.' }
@@ -70,6 +70,6 @@ class SurveysController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def survey_params
-      params.require(:survey).permit(:title, questions_attributes: [:id, :title, :kind])
+      params.require(:survey).permit(:title, questions_attributes: [:id, :title, :kind, :_destroy])
     end
 end
