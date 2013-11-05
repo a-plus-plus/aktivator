@@ -1,5 +1,5 @@
 App.controller 'SurveyCtrl', ['$scope','Survey', ($scope, Survey) ->
-	$scope.surveys = Survey.query()
+	#$scope.surveys = Survey.query()
 
 	$scope.post = (survey, event) ->
 		#event.preventDefault()
@@ -9,7 +9,7 @@ App.controller 'SurveyCtrl', ['$scope','Survey', ($scope, Survey) ->
 	$scope.newQuestion =(event) ->
 		console.log('new!')
 		event.preventDefault()
-		$scope.questions.push({})
+		$scope.questions.push({kind:'Radiobutton'})
 
 	$scope.removeQuestion = (question, event, index) ->
 		console.log('removing', question)
