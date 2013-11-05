@@ -17,7 +17,7 @@
     <%= f.text_field :title %>
   </div>
 
-  <div ng-repeat="question in questions" ng-init="outerIndex = $index" ng-init = "question.options=<%=   %>">
+  <div ng-repeat="question in questions" ng-init="outerIndex = $index" style="padding-left:50px">
 
     <%= f.fields_for :questions, Question.new( :kind => 'Radiobutton'), child_index: '{{outerIndex}}' do |q| %>
     <fieldset id = "survey_question_{{outerIndex}}" ng-hide="question.destroy==1" ng-scope>
@@ -31,7 +31,7 @@
       <button ng-click="removeQuestion(question, $event, outerIndex)">Remove question</button>
       
 
-    <div ng-repeat="option in options" ng-init="innerIndex = $index">
+    <div ng-repeat="option in question.options" ng-init="innerIndex = $index" style="padding-left:50px">
       <%= q.fields_for :options, Option.new(), child_index: '{{innerIndex}}' do |o| %>
       <fieldset id = "survey_option_{{innerIndex}}" ng-hide="option.destroy==1">
         <%= o.label :value, "Option" %><br />
