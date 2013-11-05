@@ -5,7 +5,7 @@ class Question < ActiveRecord::Base
   validates :survey, presence: true
   validates :title, presence: true
 
-  accepts_nested_attributes_for :options
+  accepts_nested_attributes_for :options, allow_destroy: true
 
   def to_s
   	"#{title}: #{kind}"
