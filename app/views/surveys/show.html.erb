@@ -4,6 +4,10 @@
   <strong>Title:</strong>
   <%= @survey.title %>
 </p>
-
+<ul>
+<% @survey.questions.each do |question| %>
+	<li><%= question%></li>
+<% end %>
+</ul>
 <%= link_to 'Edit', edit_survey_path(@survey) %> |
 <%= link_to 'Back', surveys_path %>
