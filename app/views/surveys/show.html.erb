@@ -6,7 +6,15 @@
 </p>
 <ul>
 <% @survey.questions.each do |question| %>
-	<li><%= question%></li>
+	<li>
+		<ul>
+			<lh><strong><%= question.title%></strong></lh>
+			<lh><%= question.kind %></lh>
+			<% question.options.each do |option|%>
+				<li><%= option.value%></li>
+			<% end%>
+		</ul>
+	</li>
 <% end %>
 </ul>
 <%= link_to 'Answer', survey_answer_path(@survey) %> |
