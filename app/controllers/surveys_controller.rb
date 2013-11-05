@@ -62,6 +62,13 @@ class SurveysController < ApplicationController
     end
   end
 
+  # GET /surveys/1/answer
+  def answer
+    set_survey
+    @response = Response.new
+    @response.answers.build
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_survey
@@ -72,4 +79,4 @@ class SurveysController < ApplicationController
     def survey_params
       params.require(:survey).permit(:title, questions_attributes: [:id, :title, :kind, :_destroy])
     end
-end
+  end

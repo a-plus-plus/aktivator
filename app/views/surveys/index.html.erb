@@ -7,15 +7,13 @@
       <th>Title</th>
       <th></th>
       <th></th>
-      <th></th>
     </tr>
   </thead>
 
   <tbody>
     <% @surveys.each do |survey| %>
       <tr>
-        <td><%= survey.title %></td>
-        <td><%= link_to 'Show', survey %></td>
+        <td><%= link_to survey.title, survey %></td>
         <td><%= link_to 'Edit', edit_survey_path(survey) %></td>
         <td><%= link_to 'Destroy', survey, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>

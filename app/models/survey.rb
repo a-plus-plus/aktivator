@@ -1,6 +1,6 @@
 class Survey < ActiveRecord::Base
 	has_many :questions, inverse_of: :survey
-	has_many :responses
+	has_many :responses, inverse_of: :survey
 
 	validates :title, length: {minimum:3}
 

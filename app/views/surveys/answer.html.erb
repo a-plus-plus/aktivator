@@ -1,0 +1,35 @@
+<%=  form_for @response do |f| %>
+
+<h1> <%= @survey.title %> </h1>
+
+
+<ul>
+	<% @survey.questions.each do |question| %>
+		<div>
+			<%= f.fields_for :answers, Answer.new( question: question) do |a|%>
+				<%= a.hidden_field :question_id, value:question.id%>
+
+				<h3><%= question.title%></h3>
+
+				<% if question.kind.eql? "Textfield" %>
+					<textarea></textarea>
+				
+				<% elsif question.kind.eql? "Radiobutton"%> 
+					<% question.options.each do |option| %>
+						<%= a.radio_button(:option_id, option.id) %><%=option.value%><br>
+					<% end %>
+				<% else question.kind.eql? "Checkbox"%> 
+					<% question.options.each do |option| %>
+						<%= a.check_box( :option_id) %><%= option.value%><br>
+					<% end %>
+				<% end %>
+			<% end %>
+		</div>
+	<% end %>
+</ul>
+<div class="actions">
+	<%= f.submit %>
+</div>
+
+<% end %>
+
