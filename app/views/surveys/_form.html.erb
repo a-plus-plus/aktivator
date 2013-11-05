@@ -1,34 +1,41 @@
-<%= form_for @survey, html: {data:{'survey-post' => @survey.id||0}, "ng-submit" => "post(survey, $event)", "ng-controller"=>"SurveyCtrl"} do |f| %>
-  <% if @survey.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@survey.errors.count, "error") %> prohibited this survey from being saved:</h2>
+<%= form_for @survey, html: {"ng-submit"=>"post(survey, $event)"} do |f| %>
+  <div ng-controller="SurveyCtrl" ng-init="questions=<%= @survey.questions.to_json %>">
+    <% if @survey.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@survey.errors.count, "error") %> prohibited this survey from being saved:</h2>
 
-      <ul>
-      <% @survey.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :title%><br>
-    <%= f.text_field :title, data:{'ng-model' => 'survey.title'}%>
-  </div>
-
-  <div class="field">
-    <%= f.fields_for :questions, html: {data:{'ng-repeat' => 'question in questions'}} do |q| %>
-      <fieldset>
-      <%= q.label :title, "Question" %><br />
-      <%= q.text_area :title, data:{'ng-model' => 'question.title'} %><br />
-      <%= q.label :kind, "Type of Question" %>
-      <%= q.select :kind, options_for_select([ "Radiobutton", "Checkbox","Textfield" ]), data:{'ng-model' => 'question.kind'} %>
-    </fieldset>
+        <ul>
+        <% @survey.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
     <% end %>
-  </div>
-  
-  <div class="actions">
-    <%= f.submit %>
-  </div>
 
+    <div class="field">
+      <%= f.label :title %><br>
+      <%= f.text_field :title %>
+    </div>
+
+    <div ng-repeat="question in questions">
+      <%= f.fields_for :questions, Question.new( :kind => 'Radiobutton'), child_index: '{{$index}}' do |q| %>
+        <fieldset id = "survey_question_{{$index}}" ng-hide="question.destroy==1">
+          <%= q.label :title, "Question" %><br />
+          <%= q.text_area :title, {'ng-model' => 'question.title', id:'survey_question_title_{{$index}}' }%><br />
+          <%= q.label :kind, "Type of Question" %>
+          <%= q.select( :kind, options_for_select([ "Radiobutton", "Checkbox","Textfield" ]),{},{'ng-model' => 'question.kind', id:'survey_question_kind_{{$index}}'} )%>
+          <%= q.hidden_field :id, value:"{{question.id}}"%>
+          <%= q.hidden_field :_destroy, value:'{{question.destroy}}'%><br>
+          <button ng-click="removeQuestion(question, $event, $index)">remove</button>
+      <% end %>
+      </fieldset>
+      
+    </div>
+
+    
+    <div class="actions">
+      <%= f.submit %>
+      <button ng-click="newQuestion($event)">New Question </button>
+    </div>
+  </div>
 <% end %>
