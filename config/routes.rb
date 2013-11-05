@@ -10,7 +10,11 @@ Aktivator::Application.routes.draw do
 
   resources :questions
 
-  resources :surveys
+  resources :surveys do 
+    resources :questions do 
+      resources :options
+    end
+  end
 
   get 'surveys/:id/answer' => 'surveys#answer', as: :survey_answer
 

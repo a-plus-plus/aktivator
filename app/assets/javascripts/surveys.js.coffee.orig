@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+App.controller 'SurveyCtrl', ['$scope','Survey', ($scope, Survey) ->
+	#$scope.surveys = Survey.query()
+=======
 App.controller 'SurveyCtrl', ['$scope','Survey','Question', ($scope, Survey, Question) ->
 	$scope.$watch 'sid', ->
 		if (!$scope.sid)
@@ -11,6 +15,7 @@ App.controller 'SurveyCtrl', ['$scope','Survey','Question', ($scope, Survey, Que
 				console.log('ERROR!',err)
 				
 	
+>>>>>>> options
 
 	$scope.post = (survey, event) ->
 		#event.preventDefault()
