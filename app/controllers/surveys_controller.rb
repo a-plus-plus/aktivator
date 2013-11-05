@@ -66,7 +66,7 @@ class SurveysController < ApplicationController
   # GET /surveys/1/answer
   def answer
     set_survey
-    @response = Response.new
+    @response = Response.new(survey:@survey)
     @response.answers.build
   end
 

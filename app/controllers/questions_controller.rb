@@ -3,8 +3,12 @@ class QuestionsController < ApplicationController
 
   # GET /questions
   # GET /questions.json
-  def index
-    @questions = Question.all
+  def index 
+    @questions =  if params[:survey_id]
+                    Survey.find(params[:survey_id]).questions
+                  else
+                    Question.all
+                  end
   end
 
   # GET /questions/1
