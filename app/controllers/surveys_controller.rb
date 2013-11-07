@@ -5,11 +5,16 @@ class SurveysController < ApplicationController
   # GET /surveys.json
   def index
     @surveys = Survey.all
+    respond_to do |format|
+      format.html
+      format.json { render json: @surveys }
+    end
   end
 
   # GET /surveys/1
   # GET /surveys/1.json
   def show
+   # render json: @survey
   end
 
   # GET /surveys/new
@@ -81,4 +86,9 @@ class SurveysController < ApplicationController
       params.require(:survey).permit(:title, questions_attributes: [:id, :title, :kind, :_destroy,
         options_attributes: [:id, :value, :_destroy]])
     end
+
+    def default_serializer_options
+      {root: false}
+    end
+
   end
