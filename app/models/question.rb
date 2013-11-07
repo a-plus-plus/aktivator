@@ -4,6 +4,8 @@ class Question < ActiveRecord::Base
   has_many :answers
   validates :survey, presence: true
   validates :title, presence: true
+  validates :title, length: {maximum: 5000}
+  validates :kind, inclusion: { in: ["Radiobutton", "Checkbox", "Slider", "Textfield"] } 
 
   accepts_nested_attributes_for :options, allow_destroy: true
 

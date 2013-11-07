@@ -1,5 +1,18 @@
 require 'spec_helper'
 
 describe Survey do
-  pending "add some examples to (or delete) #{__FILE__}" 
+  let(:valid_attributes) { FactoryGirl.build(:survey).attributes.symbolize_keys }
+  	
+  it "can be saved to database if it has valid attributes" do
+  	t = Survey.create! valid_attributes
+  		expect(Survey.first).to eq(t) 
+  end
+
+  it "cannot be given a title of over 256 chars" do
+  	t = Survey.create! valid_attributes
+  	too_long_a_string = (0...257).map{ ('a'..'z').to_a[rand(26)] }.join
+  	t.title = too_long_a_string
+  	expect(t).not_to be_valid
+  end
+
 end
