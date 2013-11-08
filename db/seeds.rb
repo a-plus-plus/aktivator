@@ -5,3 +5,16 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+u = User.create name: "Matti", password: "ratebeer"
+
+s = u.surveys.create title: "Linis 1", status: "Unpublished"
+u.surveys.create title: "Linis 2", status: "Unpublished"
+u.surveys.create title: "LaMa", status: "Published"
+u.surveys.create title: "Lapio", status: "Finished"
+
+q = s.questions.create title: "Kuka?", kind: "Radiobutton"
+s.questions.create title: "Mikä?", kind: "Checkbox"
+s.questions.create title: "Missä?", kind: "Textfield"
+
+q.options.create value: "Minä"
+q.options.create value: "joku muu"
