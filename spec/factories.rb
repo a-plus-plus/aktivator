@@ -18,11 +18,20 @@ FactoryGirl.define do
 	end
 
 	factory :survey do
+		user
 		title "sopiva otsikko"
 		status "Unpublished"
 	end
 
 	factory :response do 
 		survey
-	end 
+	end
+
+
+	factory :user do
+		sequence(:name) {|n| "Teppo Testaaja#{n}"} 
+		password "teponKoiranNimi"
+	end
+
+
 end
