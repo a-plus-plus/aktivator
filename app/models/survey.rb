@@ -3,6 +3,8 @@ class Survey < ActiveRecord::Base
 	has_many :questions, inverse_of: :survey
 	has_many :responses, inverse_of: :survey
 	has_many :options, through: :questions
+	has_many :taggings
+	has_many :tags, :trough => :taggings
 
 	validates :user, presence: true
 	validates :title, presence: true
