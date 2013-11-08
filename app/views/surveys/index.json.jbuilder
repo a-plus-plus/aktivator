@@ -1,5 +1,5 @@
 json.array!(@surveys) do |survey|	
-	json.survey survey.title
+	json.title survey.title
 
 	json.questions (survey.questions) do |question|
 		json.title question.title
