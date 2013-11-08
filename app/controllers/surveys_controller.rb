@@ -5,11 +5,16 @@ class SurveysController < ApplicationController
   # GET /surveys.json
   def index
     @surveys = Survey.all
+    respond_to do |format|
+      format.html
+      format.json { render json: @surveys }
+    end
   end
 
   # GET /surveys/1
   # GET /surveys/1.json
   def show
+   # render json: @survey
   end
 
   # GET /surveys/new
@@ -78,7 +83,12 @@ class SurveysController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def survey_params
-      params.require(:survey).permit(:title, questions_attributes: [:id, :title, :kind, :_destroy,
+      params.require(:survey).permit(:status, :title, questions_attributes: [:id, :title, :kind, :_destroy,
         options_attributes: [:id, :value, :_destroy]])
     end
+
+    def default_serializer_options
+      {root: false}
+    end
+
   end

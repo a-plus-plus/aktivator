@@ -9,6 +9,7 @@ class OptionsController < ApplicationController
                 else
                   Option.all
                 end
+    render json: @options
   end
 
   # GET /options/1

@@ -9,11 +9,17 @@ class QuestionsController < ApplicationController
                   else
                     Question.all
                   end
+
+    respond_to do |format|
+      format.html
+      format.json { render json: @questions }
+    end
   end
 
   # GET /questions/1
   # GET /questions/1.json
   def show
+    render json: @question
   end
 
   # GET /questions/new

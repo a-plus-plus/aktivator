@@ -15,6 +15,7 @@ gem 'turbolinks' # Turbolinks makes following links in your web application fast
 gem 'devise' # Use ActiveModel has_secure_password
 gem 'jbuilder', '~> 1.2' # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'rack-cors', :require => 'rack/cors' # Make CORS possible
+gem "active_model_serializers" # Serialization
 # Use sqlite3 as the database for Active Record in development and test enviroment
 group :development, :test do
   gem 'sqlite3'
