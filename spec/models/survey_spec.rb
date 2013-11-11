@@ -2,6 +2,7 @@ require 'spec_helper'
 
 describe Survey do
   let(:valid_attributes) { FactoryGirl.build(:survey).attributes.symbolize_keys }
+  let(:valid_attributes_tag) { FactoryGirl.build(:tag).attributes.symbolize_keys }
   	
   it "can be saved to database if it has valid attributes" do
   	t = Survey.create! valid_attributes
@@ -19,5 +20,13 @@ describe Survey do
   	t.title = too_long_a_string
   	expect(t).not_to be_valid
   end
+
+  it "can be linked to tag" do
+    t =Tag.create! valid_attributes_tag
+    s =Survey.create! valid_attributes
+    s.tags << t
+    expect(Survey.first.tags.first).to eq(t)
+  end
+
 
 end
