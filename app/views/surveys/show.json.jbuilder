@@ -4,5 +4,6 @@
 		json.title question.title
 		json.options (question.options) do |option|
 			json.value option.value
+			json.id option.id
 		end
 	end
