@@ -33,5 +33,10 @@ FactoryGirl.define do
 		password "teponKoiranNimi"
 	end
 
+	factory :tag do
+		title "sopiva tagiotsikko"
+	end
+
+
 
 end

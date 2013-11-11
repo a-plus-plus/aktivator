@@ -15,6 +15,7 @@
   <div class="field">
     <%= f.label :title %><br>
     <%= f.text_field :title %>
+    <%= f.select :status, options_for_select(["Published"]) %>
   </div>
 
   <div ng-repeat="question in questions" ng-init="outerIndex = $index" style="padding-left:50px">
