@@ -3,5 +3,5 @@ class User < ActiveRecord::Base
 	validates :name, :presence => true, :uniqueness => true, :length => {:in => 3..20}
 	validates_length_of :password, :in =>6..20, :on => :create
 	has_secure_password
-
+	
 end
