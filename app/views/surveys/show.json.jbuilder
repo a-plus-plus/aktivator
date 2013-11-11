@@ -5,5 +5,6 @@
 		json.options (question.options) do |option|
 			json.value option.value
 			json.id option.id
+			json.question_id option.question_id
 		end
 	end
