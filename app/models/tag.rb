@@ -1,4 +1,4 @@
 class Tag < ActiveRecord::Base
-	has_many :taggings
-	has_many :surveys, :through => :taggings
+   has_and_belongs_to_many :surveys
+   validates :title, :presence => true, :length => {:in => 3..20} 
 end
