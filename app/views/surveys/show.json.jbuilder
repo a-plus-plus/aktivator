@@ -1,8 +1,1 @@
-	json.title @survey.title
-
-	json.questions (@survey.questions) do |question|
-		json.title question.title
-		json.options (question.options) do |option|
-			json.value option.value
-		end
-	end
+json.partial! 'surveys/survey', survey:@survey

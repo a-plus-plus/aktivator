@@ -1,12 +1,1 @@
-json.array!(@surveys) do |survey|	
-	json.title survey.title
-	json.status survey.status
-	json.id survey.id
-
-	json.questions (survey.questions) do |question|
-		json.title question.title
-		json.options (question.options) do |option|
-			json.value option.value
-		end
-	end
-end
+json.array! @surveys, partial: 'surveys/survey', as: :survey
