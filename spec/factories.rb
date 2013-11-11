@@ -31,6 +31,7 @@ FactoryGirl.define do
 	factory :user do
 		sequence(:name) {|n| "Teppo Testaaja#{n}"} 
 		password "teponKoiranNimi"
+		password_confirmation "teponKoiranNimi"
 	end
 
 	factory :tag do
