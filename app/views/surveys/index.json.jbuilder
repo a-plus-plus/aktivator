@@ -1,6 +1,6 @@
 json.array!(@surveys) do |survey|	
 	json.title survey.title
-
+	json.status survey.status
 	json.questions (survey.questions) do |question|
 		json.title question.title
 		json.options (question.options) do |option|
