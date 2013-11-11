@@ -1,6 +1,7 @@
 json.array!(@surveys) do |survey|	
 	json.title survey.title
 	json.status survey.status
+	json.id survey.id
 
 	json.questions (survey.questions) do |question|
 		json.title question.title
