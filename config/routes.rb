@@ -8,6 +8,8 @@ Aktivator::Application.routes.draw do
 
   resources :options
 
+  resources :tags
+
   resources :questions
 
   resources :surveys do 
