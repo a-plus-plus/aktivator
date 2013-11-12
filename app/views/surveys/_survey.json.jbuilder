@@ -6,5 +6,6 @@ json.questions (survey.questions) do |question|
 	json.options (question.options) do |option|
 		json.value option.value
 		json.id option.id
+		json.question_id option.question.id
 	end
 end
