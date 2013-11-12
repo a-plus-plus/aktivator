@@ -12,6 +12,8 @@ Aktivator::Application.routes.draw do
 
   resources :questions
 
+  resources :users
+
   resources :surveys do 
     resources :questions do 
       resources :options
