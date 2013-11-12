@@ -20,6 +20,11 @@ q.options.create value: "Siiseli"
 
 q = s.questions.create title: "Missä?", kind: "Textfield"
 
+t = Tag.create title: "Linis2013"
+Survey.first.tags << t
+t = Tag.create title: "Matematiikka"
+Survey.first.tags << t
+
 
 
 #Survey.create([{ title: 'Äärettömän monta ratkaisua' ,status:'Finished'},{ title: 'Porrasmatriisit',status:'Published'},{ title: 'Sidottu',status:'Unpublished'},{ title: 'Redusoidut porrasmatriisit',status:'Finished'},{ title: 'Virittämisväitteet',status:'Published'},{ title: 'Onko R^2 avaruuden R^3 aliavaruus?',status:'Finished'},{ title: 'Matriisiväitteet',status:'Unpublished'},{ title: 'Vapauskysymys',status:'Published'}])
