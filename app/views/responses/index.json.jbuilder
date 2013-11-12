@@ -1,0 +1,1 @@
+json.array! @response, partial: 'responses/response', as: :response
