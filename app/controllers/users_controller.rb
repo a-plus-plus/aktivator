@@ -16,8 +16,6 @@ class UsersController < ApplicationController
   # GET /Users/new
   def new
     @User = User.new
-    #@User.questions.build
-    #@User.options.build 
   end
 
   # GET /Users/1/edit
