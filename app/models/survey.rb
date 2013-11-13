@@ -13,4 +13,5 @@ class Survey < ActiveRecord::Base
 
 	accepts_nested_attributes_for :questions, allow_destroy: true
 	accepts_nested_attributes_for :options, allow_destroy: true
+	accepts_nested_attributes_for :tags, allow_destroy: true
 end

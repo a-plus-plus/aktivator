@@ -79,12 +79,8 @@ class SurveysController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def survey_params
-      params.require(:survey).permit(:user_id, :status, :title, questions_attributes: [:id, :title, :kind, :_destroy,
+      params.require(:survey).permit(:user_id, :status, :title,:id,:tag_ids=>[], questions_attributes: [:id, :title, :kind, :_destroy,
         options_attributes: [:id, :value, :_destroy]])
-    end
-
-    def default_serializer_options
-      {root: false}
     end
 
   end
