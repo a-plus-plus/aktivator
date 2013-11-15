@@ -1,5 +1,11 @@
 Aktivator::Application.routes.draw do
 
+  devise_for :users, :skip => [:sessions]
+  as :user do
+    post   '/login'   => 'sessions#create'
+    delete '/logout'  => 'sessions#destroy'
+  end
+
   resources :responses
 
   root to: "surveys#index"

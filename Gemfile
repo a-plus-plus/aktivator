@@ -1,8 +1,7 @@
 source 'https://rubygems.org'
 ruby '2.0.0'
 
-gem 'rails', '4.0.0' # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-
+gem 'rails', '4.0.1' # Bundle edge Rails instead: gem 'rails', github: 'rails/rails
 gem 'table_print'
 gem 'angularjs-rails' # Use Angular.js as JS framework
 gem 'sass-rails', '~> 4.0.0' # Use SCSS for stylesheets
@@ -16,7 +15,9 @@ gem 'devise' # Use ActiveModel has_secure_password
 gem 'jbuilder', '~> 1.2' # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'rack-cors', :require => 'rack/cors' # Make CORS possible
 # Use sqlite3 as the database for Active Record in development and test enviroment
-gem 'bcrypt-ruby', '~> 3.0.0'
+#gem 'bcrypt-ruby', '~> 3.0.0'
+gem 'pundit'
+gem 'aes', '~> 0.5.0'
 
 group :development, :test do
   gem 'sqlite3'
