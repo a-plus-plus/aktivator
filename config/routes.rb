@@ -1,6 +1,6 @@
 Aktivator::Application.routes.draw do
 
-  devise_for :users, :skip => [:sessions]
+  devise_for :users, :skip => [:sessions, :create]
   as :user do
     post   '/login'   => 'sessions#create'
     delete '/logout'  => 'sessions#destroy'
