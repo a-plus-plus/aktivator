@@ -29,7 +29,8 @@ FactoryGirl.define do
 
 
 	factory :user do
-		sequence(:name) {|n| "Teppo Testaaja#{n}"} 
+		sequence(:name) {|n| "Teppo Testaaja#{n}"}
+		sequence(:email) {|k| "maili#{k}@mappi.com"} 
 		password "teponKoiranNimi"
 		password_confirmation "teponKoiranNimi"
 	end
