@@ -1,6 +1,6 @@
 class SessionsController < Devise::SessionsController
-  #skip_before_filter :authenticate_user_from_token!, :only => [:create]
-  #skip_after_filter  :verify_authorized
+  skip_before_filter :authenticate_user_from_token!, :only => [:create]
+  skip_after_filter  :verify_authorized
   
   def create
     resource = User.find_for_database_authentication(name: params[:user][:name])

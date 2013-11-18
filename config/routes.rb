@@ -1,8 +1,8 @@
 Aktivator::Application.routes.draw do
 
-  devise_for :users, :skip => [:sessions, :create]
+  devise_for :users, :skip => [:sessions, :create], defaults: {format: :json}
   as :user do
-    post   '/login'   => 'sessions#create'
+    post   '/login'   => 'sessions#create', defaults: {format: :json}
     delete '/logout'  => 'sessions#destroy'
   end
 

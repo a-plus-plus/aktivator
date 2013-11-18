@@ -15,8 +15,6 @@ gem 'devise' # Use ActiveModel has_secure_password
 gem 'jbuilder', '~> 1.2' # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'rack-cors', :require => 'rack/cors' # Make CORS possible
 # Use sqlite3 as the database for Active Record in development and test enviroment
-#gem 'bcrypt-ruby', '~> 3.0.0'
-gem 'pundit'
 gem 'aes', '~> 0.5.0'
 
 group :development, :test do
