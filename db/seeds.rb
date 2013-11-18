@@ -3,8 +3,8 @@
 
 
 # user creation
-u = User.create name: "Arto", password: "ratebeeR123", password_confirmation: "ratebeeR123"
-Maija = User.create name: "Maija", password: "ratebeeR123", password_confirmation: "ratebeeR123"
+u = User.create name: "Arto", password: "ratebeeR123", password_confirmation: "ratebeeR123", email: "trolol@yay.lol"
+Maija = User.create name: "Maija", password: "ratebeeR123", password_confirmation: "ratebeeR123", email: "viichet@omg.lol"
 
 # survey creation
 s = u.surveys.create title: "Linis 1", status: "Unpublished"
