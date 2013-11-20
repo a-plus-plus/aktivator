@@ -18,6 +18,7 @@ Aktivator::Application.routes.draw do
 
   get 'surveys/:id/answer' => 'surveys#answer', as: :survey_answer
 
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

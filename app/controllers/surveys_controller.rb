@@ -17,17 +17,6 @@ class SurveysController < ApplicationController
    # render json: @survey
   end
 
-  # GET /surveys/new
-  def new
-    @survey = Survey.new
-    #@survey.questions.build
-    #@survey.options.build 
-  end
-
-  # GET /surveys/1/edit
-  def edit
-  end
-
   # POST /surveys
   # POST /surveys.json
   def create

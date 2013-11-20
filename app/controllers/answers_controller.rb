@@ -12,15 +12,6 @@ class AnswersController < ApplicationController
   def show
   end
 
-  # GET /answers/new
-  def new
-    @answer = Answer.new
-  end
-
-  # GET /answers/1/edit
-  def edit
-  end
-
   # POST /answers
   # POST /answers.json
   def create

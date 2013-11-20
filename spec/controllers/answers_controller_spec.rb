@@ -17,9 +17,12 @@ require 'spec_helper'
 # is no simpler way to get a handle on the object needed for the example.
 # Message expectations are only used when there is no simpler way to specify
 # that an instance is receiving a specific message.
- 
-describe AnswersController do
 
+
+describe AnswersController do
+  pending "TODO, evaluate if answers controller and tests are necessary"
+=begin 
+  login_user
   # This should return the minimal set of attributes required to create a valid
   # Answer. As you add validations to Answer, be sure to
   # adjust the attributes here as well.
@@ -29,7 +32,10 @@ describe AnswersController do
   # in order to pass any filters (e.g. authentication) defined in
   # AnswersController. Be sure to keep this updated too.
   let(:valid_session) { {} }
-
+  before :each do
+    request.env["HTTP_ACCEPT"] = 'application/json' 
+  end
+  
   describe "GET index" do
     it "assigns all answers as @answers" do
       answer = Answer.create! valid_attributes
@@ -45,22 +51,7 @@ describe AnswersController do
       assigns(:answer).should eq(answer)
     end
   end
-
-  describe "GET new" do
-    it "assigns a new answer as @answer" do
-      get :new, {}, valid_session
-      assigns(:answer).should be_a_new(Answer)
-    end
-  end
-
-  describe "GET edit" do
-    it "assigns the requested answer as @answer" do
-      answer = Answer.create! valid_attributes
-      get :edit, {:id => answer.to_param}, valid_session
-      assigns(:answer).should eq(answer)
-    end
-  end
-
+  
   describe "POST create" do
     describe "with valid params" do
       it "creates a new Answer" do
@@ -75,10 +66,6 @@ describe AnswersController do
         assigns(:answer).should be_persisted
       end
 
-      it "redirects to the created answer" do
-        post :create, {:answer => valid_attributes}, valid_session
-        response.should redirect_to(Answer.last)
-      end
     end
 
     describe "with invalid params" do
@@ -89,12 +76,6 @@ describe AnswersController do
         assigns(:answer).should be_a_new(Answer)
       end
 
-      it "re-renders the 'new' template" do
-        # Trigger the behavior that occurs when invalid params are submitted
-        Answer.any_instance.stub(:save).and_return(false)
-        post :create, {:answer => { "option" => "invalid value" }}, valid_session
-        response.should render_template("new")
-      end
     end
   end
 
@@ -115,12 +96,7 @@ describe AnswersController do
         put :update, {:id => answer.to_param, :answer => valid_attributes}, valid_session
         assigns(:answer).should eq(answer)
       end
-
-      it "redirects to the answer" do
-        answer = Answer.create! valid_attributes
-        put :update, {:id => answer.to_param, :answer => valid_attributes}, valid_session
-        response.should redirect_to(answer)
-      end
+     
     end
 
     describe "with invalid params" do
@@ -149,12 +125,8 @@ describe AnswersController do
         delete :destroy, {:id => answer.to_param}, valid_session
       }.to change(Answer, :count).by(-1)
     end
-
-    it "redirects to the answers list" do
-      answer = Answer.create! valid_attributes
-      delete :destroy, {:id => answer.to_param}, valid_session
-      response.should redirect_to(answers_url)
-    end
+   
   end
 
+=end
 end

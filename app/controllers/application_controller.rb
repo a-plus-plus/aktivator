@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
   before_filter :authenticate_user!
 
   #after_filter :verify_authorized, :except => [:greet]
-
+  respond_to :json
   def resource_name
     :user
   end

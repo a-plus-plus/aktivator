@@ -19,6 +19,7 @@ require 'spec_helper'
 # that an instance is receiving a specific message.
 
 describe ResponsesController do
+  login_user
 
   # This should return the minimal set of attributes required to create a valid
   # Response. As you add validations to Response, be sure to
@@ -29,6 +30,10 @@ describe ResponsesController do
   # in order to pass any filters (e.g. authentication) defined in
   # ResponsesController. Be sure to keep this updated too.
   let(:valid_session) { {} }
+
+  before :each do
+    request.env["HTTP_ACCEPT"] = 'application/json' 
+  end
 
   describe "GET index" do
     it "assigns all responses as @responses" do
@@ -45,22 +50,7 @@ describe ResponsesController do
       assigns(:response).should eq(response)
     end
   end
-
-  describe "GET new" do
-    it "assigns a new response as @response" do
-      get :new, {}, valid_session
-      assigns(:response).should be_a_new(Response)
-    end
-  end
-
-  describe "GET edit" do
-    it "assigns the requested response as @response" do
-      response = Response.create! valid_attributes
-      get :edit, {:id => response.to_param}, valid_session
-      assigns(:response).should eq(response)
-    end
-  end
-
+   
   describe "POST create" do
     describe "with valid params" do
       it "creates a new Response" do
@@ -75,10 +65,7 @@ describe ResponsesController do
         assigns(:response).should be_persisted
       end
 
-      it "redirects to the created response" do
-        post :create, {:response => valid_attributes}, valid_session
-        response.should redirect_to(Response.last)
-      end
+     
     end
 
     describe "with invalid params" do
@@ -89,12 +76,7 @@ describe ResponsesController do
         assigns(:response).should be_a_new(Response)
       end
 
-      it "re-renders the 'new' template" do
-        # Trigger the behavior that occurs when invalid params are submitted
-        Response.any_instance.stub(:save).and_return(false)
-        post :create, {:response => { "survey_id" => "invalid value" }}, valid_session
-        response.should render_template("new")
-      end
+      
     end
   end
 
@@ -116,11 +98,7 @@ describe ResponsesController do
         assigns(:response).should eq(response)
       end
 
-      it "redirects to the response" do
-        response = Response.create! valid_attributes
-        put :update, {:id => response.to_param, :response => valid_attributes}, valid_session
-        response.should redirect_to(response)
-      end
+     
     end
 
     describe "with invalid params" do
@@ -132,13 +110,6 @@ describe ResponsesController do
         assigns(:response).should eq(response)
       end
 
-      it "re-renders the 'edit' template" do
-        response = Response.create! valid_attributes
-        # Trigger the behavior that occurs when invalid params are submitted
-        Response.any_instance.stub(:save).and_return(false)
-        put :update, {:id => response.to_param, :response => { "survey_id" => "invalid value" }}, valid_session
-        response.should render_template("edit")
-      end
     end
   end
 
@@ -149,12 +120,7 @@ describe ResponsesController do
         delete :destroy, {:id => response.to_param}, valid_session
       }.to change(Response, :count).by(-1)
     end
-
-    it "redirects to the responses list" do
-      response = Response.create! valid_attributes
-      delete :destroy, {:id => response.to_param}, valid_session
-      response.should redirect_to(responses_url)
-    end
+ 
   end
 
 end

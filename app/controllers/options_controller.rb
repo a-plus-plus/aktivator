@@ -17,15 +17,6 @@ class OptionsController < ApplicationController
   def show
   end
 
-  # GET /options/new
-  def new
-    @option = Option.new
-  end
-
-  # GET /options/1/edit
-  def edit
-  end
-
   # POST /options
   # POST /options.json
   def create

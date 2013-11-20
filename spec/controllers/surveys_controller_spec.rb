@@ -19,6 +19,7 @@ require 'spec_helper'
 # that an instance is receiving a specific message.
 
 describe SurveysController do
+  login_user
 
   # This should return the minimal set of attributes required to create a valid
   # Survey. As you add validations to Survey, be sure to
@@ -30,7 +31,11 @@ let(:valid_attributes) { FactoryGirl.build(:survey).attributes.symbolize_keys }
   # SurveysController. Be sure to keep this updated too.
   let(:valid_session) { {} }
 
-  describe "GET index" do
+before :each do
+request.env["HTTP_ACCEPT"] = 'application/json' 
+end
+  
+  describe "GET index" do 
     it "assigns all surveys as @surveys" do
       survey = Survey.create! valid_attributes
       get :index, {}, valid_session
@@ -45,22 +50,7 @@ let(:valid_attributes) { FactoryGirl.build(:survey).attributes.symbolize_keys }
       assigns(:survey).should eq(survey)
     end
   end
-
-  describe "GET new" do
-    it "assigns a new survey as @survey" do
-      get :new, {}, valid_session
-      assigns(:survey).should be_a_new(Survey)
-    end
-  end
-
-  describe "GET edit" do
-    it "assigns the requested survey as @survey" do
-      survey = Survey.create! valid_attributes
-      get :edit, {:id => survey.to_param}, valid_session
-      assigns(:survey).should eq(survey)
-    end
-  end
-
+   
   describe "POST create" do
     describe "with valid params" do
       it "creates a new Survey" do
@@ -75,10 +65,6 @@ let(:valid_attributes) { FactoryGirl.build(:survey).attributes.symbolize_keys }
         assigns(:survey).should be_persisted
       end
 
-      it "redirects to the created survey" do
-        post :create, {:survey => valid_attributes}, valid_session
-        response.should redirect_to(Survey.last)
-      end
     end
 
     describe "with invalid params" do
@@ -89,12 +75,6 @@ let(:valid_attributes) { FactoryGirl.build(:survey).attributes.symbolize_keys }
         assigns(:survey).should be_a_new(Survey)
       end
 
-      it "re-renders the 'new' template" do
-        # Trigger the behavior that occurs when invalid params are submitted
-        Survey.any_instance.stub(:save).and_return(false)
-        post :create, {:survey => { "title" => "invalid value" }}, valid_session
-        response.should render_template("new")
-      end
     end
   end
 
@@ -112,15 +92,10 @@ let(:valid_attributes) { FactoryGirl.build(:survey).attributes.symbolize_keys }
 
       it "assigns the requested survey as @survey" do
         survey = Survey.create! valid_attributes
-        put :update, {:id => survey.to_param, :survey => valid_attributes}, valid_session
+        put :update, {:id => survey.to_param, :survey => valid_attributes.except(:id)}, valid_session
         assigns(:survey).should eq(survey)
       end
 
-      it "redirects to the survey" do
-        survey = Survey.create! valid_attributes
-        put :update, {:id => survey.to_param, :survey => valid_attributes}, valid_session
-        response.should redirect_to(survey)
-      end
     end
 
     describe "with invalid params" do
@@ -132,13 +107,6 @@ let(:valid_attributes) { FactoryGirl.build(:survey).attributes.symbolize_keys }
         assigns(:survey).should eq(survey)
       end
 
-      it "re-renders the 'edit' template" do
-        survey = Survey.create! valid_attributes
-        # Trigger the behavior that occurs when invalid params are submitted
-        Survey.any_instance.stub(:save).and_return(false)
-        put :update, {:id => survey.to_param, :survey => { "title" => "invalid value" }}, valid_session
-        response.should render_template("edit")
-      end
     end
   end
 
@@ -150,11 +118,7 @@ let(:valid_attributes) { FactoryGirl.build(:survey).attributes.symbolize_keys }
       }.to change(Survey, :count).by(-1)
     end
 
-    it "redirects to the surveys list" do
-      survey = Survey.create! valid_attributes
-      delete :destroy, {:id => survey.to_param}, valid_session
-      response.should redirect_to(surveys_url)
-    end
+    
   end
 
 end
