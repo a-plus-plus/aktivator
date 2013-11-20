@@ -37,7 +37,9 @@ class SurveysController < ApplicationController
   # PATCH/PUT /surveys/1.json
   def update
     respond_to do |format|
-      if @survey.update(survey_params)
+      p = survey_params
+      p[:tag_ids] = [] if p[:tag_ids].nil? # @TODO do this better, some before filter etc
+      if @survey.update(p)
         format.html { redirect_to @survey, notice: 'Survey was successfully updated.' }
         format.json { head :no_content }
       else
@@ -72,8 +74,8 @@ class SurveysController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def survey_params
-      params.require(:survey).permit(:user_id, :status, :title,:id,:tag_ids=>[], questions_attributes: [:id, :title, :kind, :_destroy,
-        options_attributes: [:id, :value, :_destroy]])
+      p = params.require(:survey).permit(:user_id, :status, :title, :id, {:questions_attributes => [:id, :title, :kind, :_destroy,
+        options_attributes: [:id, :value, :_destroy]]} , { :tag_ids => [] } )
     end
 
   end
