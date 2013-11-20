@@ -3,14 +3,6 @@ ruby '2.0.0'
 
 gem 'rails', '4.0.1' # Bundle edge Rails instead: gem 'rails', github: 'rails/rails
 gem 'table_print'
-gem 'angularjs-rails' # Use Angular.js as JS framework
-gem 'sass-rails', '~> 4.0.0' # Use SCSS for stylesheets
-gem 'uglifier', '>= 1.3.0' # Use Uglifier as compressor for JavaScript assets
-gem 'coffee-rails', '~> 4.0.0' # Use CoffeeScript for .js.coffee assets and views
-gem 'jquery-rails' # Use jquery as the JavaScript library
-gem 'bootstrap-sass-rails', '>= 3.0.0.2' # SASS for bootstrap
-gem 'jquery-turbolinks' # For jquery to play nicely with turbolinks
-gem 'turbolinks' # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'devise' # Use ActiveModel has_secure_password
 gem 'jbuilder', '~> 1.2' # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'rack-cors', :require => 'rack/cors' # Make CORS possible
