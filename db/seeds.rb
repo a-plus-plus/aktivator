@@ -33,15 +33,14 @@ Survey.first.tags.create title: "Matematiikka"
 
 # response to a survey
 r = Response.create survey: s 
-r.answers.create value: "Heikki",response_id: 1, question_id: 1
-r.answers.create value: "Heikki",response_id: 2, question_id: 1
-r.answers.create value: "Risto",response_id: 3, question_id: 1
-r.answers.create value: "Joku muu",response_id: 4, question_id: 1
+r.answers.create option_id: 1,response_id: 1, question_id: 1
+r.answers.create option_id: 2,response_id: 3, question_id: 1
+r.answers.create option_id: 3,response_id: 4, question_id: 1
 
 # another response to a survey
 r2 = Response.create survey: s2 
-r2.answers.create value: "Heikki", question_id: 1
-r2.answers.create value: "Myyrä", question_id: 2
+r2.answers.create option_id: 1, question_id: 1
+r2.answers.create option_id: 1, question_id: 2
 
 r3 = Response.create survey: s 
-r3.answers.create value: "Risto", response_id: 3, question_id: 1
+r3.answers.create option_id: 2, response_id: 3, question_id: 1

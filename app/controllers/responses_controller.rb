@@ -1,5 +1,5 @@
 class ResponsesController < ApplicationController
-  before_action :set_response, only: [:show, :edit, :update, :destroy]
+  before_action :set_response, only: [:edit, :update, :destroy]
 
   # GET /responses
   # GET /responses.json
@@ -10,13 +10,15 @@ class ResponsesController < ApplicationController
   # GET /responses/1
   # GET /responses/1.json
   def show
+    @responses = Response.where(survey_id: params[:id])
+    @questions = Question.where(survey_id: params[:id])
+    
   end
 
   # GET /responses/new
   def new
     @response = Response.new
   end
-
   # GET /responses/1/edit
   def edit
   end
@@ -69,6 +71,6 @@ class ResponsesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def response_params
-      params.require(:response).permit(:survey_id, answers_attributes:[:option_id,:value,:question_id])
+      params.require(:response).permit(:survey_id, questions_attributes:[:title, :kind], answers_attributes:[:option_id,:value,:question_id])
     end
 end
