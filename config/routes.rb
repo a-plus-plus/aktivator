@@ -3,7 +3,7 @@ Aktivator::Application.routes.draw do
   devise_for :users, :skip => [:sessions, :create], defaults: {format: :json}
   as :user do
     post   '/login'   => 'sessions#create', defaults: {format: :json}
-    delete '/logout'  => 'sessions#destroy'
+    delete '/logout'  => 'sessions#destroy', defaults: {format: :json}
   end
 
   resources :responses,:answers,:options,:tags,:questions,:users, defaults: {format: :json}

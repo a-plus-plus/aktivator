@@ -1,6 +1,9 @@
 class TagsController < ApplicationController
 	before_action :set_tag, only: [:show, :edit, :update, :destroy]
 
+  skip_before_filter  :authenticate_user_from_token!, only: [:index, :show]
+  skip_before_filter :authenticate_user!, only: [:index, :show]
+
   # GET /tags
   # GET /tags.json
   def index
