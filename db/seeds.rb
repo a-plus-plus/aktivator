@@ -5,6 +5,7 @@
 # user creation
 u = User.create name: "Arto", password: "ratebeeR123", password_confirmation: "ratebeeR123", email: "trolol@yay.lol"
 Maija = User.create name: "Maija", password: "ratebeeR123", password_confirmation: "ratebeeR123", email: "viichet@omg.lol"
+pauli = User.create name: "pauli", password: "pauli123", password_confirmation: "pauli123", email: "example@example.org"
 
 # survey creation
 s = u.surveys.create title: "Linis 1", status: "Unpublished"
