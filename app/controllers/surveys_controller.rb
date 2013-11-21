@@ -5,10 +5,10 @@ class SurveysController < ApplicationController
   skip_before_filter :authenticate_user!, only: [:index, :show]
 
 
-  # GET /surveys
   # GET /surveys.json
   def index
-    @surveys = Survey.all
+    #If authenticated show all, else published
+    authenticate_user_from_token! ? @surveys = Survey.all : @surveys = Survey.published
   end
 
   # GET /surveys/1
