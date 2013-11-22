@@ -7,7 +7,16 @@ class TagsController < ApplicationController
   # GET /tags
   # GET /tags.json
   def index
-  	@tags = Tag.all
+    #If authenticated return all tags, else tags where survey status is published
+    #Bug: tags contain unpublished surveys when unauthorized, fix by jbuilder or better query
+    #authenticate_user_from_token! ? @tags = Tag.all : @tags = Tag.joins(:surveys).where(surveys: {status: "Published"})
+    if authenticate_user_from_token!
+      @tags = Tag.all
+    else
+       @tags = Tag.includes(:surveys).where(surveys: {status: ['Published', 'Finished']})
+
+     end
+
   end
 
   # GET /tags/1
@@ -29,7 +38,6 @@ class TagsController < ApplicationController
   # POST /tags.json
   def create
   	@tag = Tag.new(tag_params)
-    #debugger
     respond_to do |format|
     	if @tag.save
     		format.html { redirect_to @tag, notice: 'tag was successfully created.' }
