@@ -4,24 +4,21 @@ class SurveysController < ApplicationController
   skip_before_filter  :authenticate_user_from_token!, only: [:index, :show]
   skip_before_filter :authenticate_user!, only: [:index, :show]
 
-
   # GET /surveys.json
   def index
-    #If authenticated show all, else published
-    authenticate_user_from_token! ? @surveys = Survey.all : @surveys = Survey.published
+    #If authenticated show all, else only published and finished
+    authenticate_user_from_token! ? @surveys = Survey.all : @surveys = Survey.published + Survey.finished
   end
 
   # GET /surveys/1
   # GET /surveys/1.json
   def show
-   # render json: @survey
   end
 
   # POST /surveys
   # POST /surveys.json
   def create
     @survey = Survey.new(survey_params)
-    #debugger
     respond_to do |format|
       if @survey.save
         format.html { redirect_to @survey, notice: 'Survey was successfully created.' }
