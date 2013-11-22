@@ -5,5 +5,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :recoverable, :rememberable, :trackable, :validatable
 
 	has_many :surveys
+	validates_uniqueness_of :name, :message => 'Username is already in use!'
+	validates_uniqueness_of :email, :message => 'E-mail has been registered already!'
 	
 end
