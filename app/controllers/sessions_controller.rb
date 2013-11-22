@@ -23,6 +23,6 @@ class SessionsController < Devise::SessionsController
   def handle_success(resource)
     token = resource.ensure_authentication_token
     name = AES.encrypt(resource.name, Aktivator::Application.config.secret_key_base)
-    render :json => {:success => true, :name => name, :token => token}
+    render :json => {:success => true, :name => name, :token => token, :username => resource.name}
   end	
 end
