@@ -1,4 +1,6 @@
 class Survey < ActiveRecord::Base
+	scope :published, -> { where(status: "Published") }
+
 	belongs_to :user, inverse_of: :surveys
 	has_many :questions, inverse_of: :survey
 	has_many :responses, inverse_of: :survey
