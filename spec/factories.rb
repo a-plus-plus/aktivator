@@ -20,7 +20,7 @@ FactoryGirl.define do
 	factory :survey do
 		user
 		title "sopiva otsikko"
-		status "Unpublished"
+		status "Published"
 	end
 
 	factory :response do 

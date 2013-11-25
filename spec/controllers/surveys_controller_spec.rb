@@ -43,6 +43,26 @@ end
     end
   end
 
+  describe "GET not logged in" do 
+    it "returns only published and finished" do
+      sign_out :user
+
+      survey = Survey.create! valid_attributes
+
+      unpublished = Survey.create! valid_attributes
+      unpublished.status = "Unpublished"
+      unpublished.save
+
+      finished = Survey.create! valid_attributes
+      finished.status = "Finished"
+      finished.save
+
+      get :index, {}, valid_session
+      assigns(:surveys).should eq([survey, finished])
+      p "#{[survey, finished]}"
+    end
+  end  
+
   describe "GET show" do
     it "assigns the requested survey as @survey" do
       survey = Survey.create! valid_attributes
