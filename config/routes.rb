@@ -6,7 +6,7 @@ Aktivator::Application.routes.draw do
     delete '/logout'  => 'sessions#destroy', defaults: {format: :json}
   end
 
-  resources :responses,:answers,:options,:tags,:questions,:users, defaults: {format: :json}
+  resources :responses,:options,:tags,:questions,:users, defaults: {format: :json}
 
   root to: "surveys#index"
 
