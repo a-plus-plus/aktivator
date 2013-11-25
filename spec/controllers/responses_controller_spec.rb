@@ -56,28 +56,15 @@ describe ResponsesController do
       it "creates a new Response" do
         expect {
           post :create, {:response => valid_attributes}, valid_session
-        }.to change(Response, :count).by(1)
+          }.to change(Response, :count).by(1)
+        end
+
+        it "assigns a newly created response as @response" do
+          post :create, {:response => valid_attributes}, valid_session
+          assigns(:response).should be_a(Response)
+          assigns(:response).should be_persisted
+        end   
       end
-
-      it "assigns a newly created response as @response" do
-        post :create, {:response => valid_attributes}, valid_session
-        assigns(:response).should be_a(Response)
-        assigns(:response).should be_persisted
-      end
-
-     
-    end
-
-    describe "with invalid params" do
-      it "assigns a newly created but unsaved response as @response" do
-        # Trigger the behavior that occurs when invalid params are submitted
-        Response.any_instance.stub(:save).and_return(false)
-        post :create, {:response => { "survey_id" => "invalid value" }}, valid_session
-        assigns(:response).should be_a_new(Response)
-      end
-
-      
-    end
   end
 
   describe "PUT update" do

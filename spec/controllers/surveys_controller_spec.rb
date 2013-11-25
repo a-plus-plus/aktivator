@@ -106,7 +106,7 @@ end
         # specifies that the Survey created on the previous line
         # receives the :update_attributes message with whatever params are
         # submitted in the request.
-        Survey.any_instance.should_receive(:update).with({ "title" => "MyString" })
+        Survey.any_instance.should_receive(:update).with({ "title" => "MyString", "tag_ids"=>[] })
         put :update, {:id => survey.to_param, :survey => { "title" => "MyString" }}, valid_session
       end
 
