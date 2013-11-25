@@ -25,7 +25,7 @@ class ResponsesController < ApplicationController
     respond_to do |format|
       if @response.survey.status == "Published" 
         @response.save
-        format.json { render json: {message: "Survey created"} }
+        format.json { render json: {message: "Survey created successfully"} }
       else
         format.json { render status: :unprocessable_entity, json: {message: "Survey not published"}  }
       end
