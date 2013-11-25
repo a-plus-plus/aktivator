@@ -19,6 +19,7 @@ class SurveysController < ApplicationController
   # POST /surveys.json
   def create
     @survey = Survey.new(survey_params)
+    @survey.user = current_user
     respond_to do |format|
       if @survey.save
         format.html { redirect_to @survey, notice: 'Survey was successfully created.' }
@@ -54,13 +55,6 @@ class SurveysController < ApplicationController
       format.html { redirect_to surveys_url }
       format.json { head :no_content }
     end
-  end
-
-  # GET /surveys/1/answer
-  def answer
-    set_survey
-    @response = Response.new(survey:@survey)
-    @response.answers.build
   end
 
   private

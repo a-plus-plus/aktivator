@@ -1,8 +1,8 @@
 class ResponsesController < ApplicationController
   before_action :set_response, only: [:show, :edit, :update, :destroy]
   
-  skip_before_filter  :authenticate_user_from_token!, only: [:index, :show, :create]
-  skip_before_filter :authenticate_user!, only: [:index, :show, :create]
+  skip_before_filter  :authenticate_user_from_token!, only: [:index, :show]
+  skip_before_filter :authenticate_user!, only: [:index, :show]
   # GET /responses
   # GET /responses.json
   def index
@@ -21,14 +21,13 @@ class ResponsesController < ApplicationController
   # POST /responses.json
   def create
     @response = Response.new(response_params)
-
+    #Save only if survey status is published.
     respond_to do |format|
-      if @response.save
-        format.html { redirect_to @response, notice: 'Response was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @response }
+      if @response.survey.status == "Published" 
+        @response.save
+        format.json { render json: {message: "Survey created"} }
       else
-        format.html { render action: 'new' }
-        format.json { render json: @response.errors, status: :unprocessable_entity }
+        format.json { render status: :unprocessable_entity, json: {message: "Survey not published"}  }
       end
     end
   end
