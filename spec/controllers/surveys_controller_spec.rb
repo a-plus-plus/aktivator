@@ -59,7 +59,6 @@ end
 
       get :index, {}, valid_session
       assigns(:surveys).should eq([survey, finished])
-      p "#{[survey, finished]}"
     end
   end  
 

@@ -65,6 +65,29 @@ describe ResponsesController do
           assigns(:response).should be_persisted
         end   
       end
+    end
+
+    describe "with unpublished survey" do
+      it "rejects the response" do
+        survey = FactoryGirl.create :survey, status: 'Unpublished'
+        response = FactoryGirl.build :response, survey:survey
+
+        expect {
+          post :create, {response: response.attributes}, valid_session
+        }.to change(Response, :count).by(0)
+    end
+  end
+
+    describe "with finished survey" do
+      it "rejects the response" do
+        survey = FactoryGirl.create :survey, status: 'Finished'
+        response = FactoryGirl.build :response, survey:survey
+
+        expect {
+          post :create, {response: response.attributes}, valid_session
+        }.to change(Response, :count).by(0)
+    end
+
   end
 
   describe "PUT update" do
@@ -84,8 +107,6 @@ describe ResponsesController do
         put :update, {:id => response.to_param, :response => valid_attributes}, valid_session
         assigns(:response).should eq(response)
       end
-
-     
     end
 
     describe "with invalid params" do
@@ -96,7 +117,6 @@ describe ResponsesController do
         put :update, {:id => response.to_param, :response => { "survey_id" => "invalid value" }}, valid_session
         assigns(:response).should eq(response)
       end
-
     end
   end
 
