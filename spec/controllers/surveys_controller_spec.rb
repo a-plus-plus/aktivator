@@ -19,6 +19,7 @@ require 'spec_helper'
 # that an instance is receiving a specific message.
 
 describe SurveysController do
+  render_views
   login_user
 
   # This should return the minimal set of attributes required to create a valid
@@ -36,29 +37,28 @@ request.env["HTTP_ACCEPT"] = 'application/json'
 end
   
   describe "GET index" do 
-    it "assigns all surveys as @surveys" do
-      survey = Survey.create! valid_attributes
-      get :index, {}, valid_session
-      assigns(:surveys).should eq([survey])
+    it "sends a list of surveys" do
+      FactoryGirl.create_list(:survey, 10)
+
+      get :index
+
+      expect(response).to be_success            # test for the 200 status-code
+      json.should have(10).items   
     end
   end
 
-  describe "GET not logged in" do 
+  describe "GET index not logged in" do 
     it "returns only published and finished" do
       sign_out :user
 
       survey = Survey.create! valid_attributes
+      unpublished = FactoryGirl.create(:survey, status: "Unpublished")
+      finished = FactoryGirl.create(:survey, status: "Finished")
 
-      unpublished = Survey.create! valid_attributes
-      unpublished.status = "Unpublished"
-      unpublished.save
-
-      finished = Survey.create! valid_attributes
-      finished.status = "Finished"
-      finished.save
-
-      get :index, {}, valid_session
-      assigns(:surveys).should eq([survey, finished])
+      get :index
+      expect(response).to be_success
+      json.should have(2).items
+      json.all? {|status| status.value?('Unpublished') }.should be_false
     end
   end  
 
