@@ -2,13 +2,17 @@
 # The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
 
 
+
+
+# ---> To seed your db, use rake db:drop db:create db:migrate db:seed db:test:prepare - rake db:reset won't work! <---
+
 # user creation
 u = User.create name: "Arto", password: "ratebeeR123", password_confirmation: "ratebeeR123", email: "trolol@yay.lol"
 Maija = User.create name: "Maija", password: "ratebeeR123", password_confirmation: "ratebeeR123", email: "viichet@omg.lol"
 pauli = User.create name: "pauli", password: "pauli123", password_confirmation: "pauli123", email: "example@example.org"
 
 # survey creation
-s = u.surveys.create title: "Linis 1", status: "Unpublished"
+s = u.surveys.create title: "Linis 1", status: "Published"
 s2 = Maija.surveys.create title: "Linis 2", status: "Unpublished"
 u.surveys.create title: "LaMa", status: "Published"
 u.surveys.create title: "Lapio", status: "Finished"
