@@ -62,11 +62,15 @@ end
     end
   end  
 
-  describe "GET show" do
-    it "assigns the requested survey as @survey" do
+  describe "GET show :id" do
+    it "it returns the correct survey with paramater :id as JSON" do
       survey = Survey.create! valid_attributes
-      get :show, {:id => survey.to_param}, valid_session
-      assigns(:survey).should eq(survey)
+
+      get :show, {:id => survey.to_param}
+      expect(response).to be_success
+      
+      json['title'].should == "sopiva otsikko"
+      json['id'].should == survey.id
     end
   end
    
