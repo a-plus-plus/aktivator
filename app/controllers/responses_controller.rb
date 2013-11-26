@@ -1,8 +1,8 @@
 class ResponsesController < ApplicationController
   before_action :set_response, only: [:show, :edit, :update, :destroy]
   
-  skip_before_filter  :authenticate_user_from_token!, only: [:index, :show]
-  skip_before_filter :authenticate_user!, only: [:index, :show]
+  skip_before_filter  :authenticate_user_from_token!, only: [:create, :index, :show]
+  skip_before_filter :authenticate_user!, only: [:create, :index, :show]
   # GET /responses
   # GET /responses.json
   def index
