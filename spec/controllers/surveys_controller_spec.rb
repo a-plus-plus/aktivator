@@ -68,8 +68,8 @@ end
 
       get :show, {:id => survey.to_param}
       expect(response).to be_success
-      
-      json['title'].should == "sopiva otsikko"
+
+      json['title'].should == survey.title
       json['id'].should == survey.id
     end
   end
