@@ -22,15 +22,13 @@ class ResponsesController < ApplicationController
   def create
     @response = Response.new(response_params)
     #Save only if survey status is published.
-    respond_to do |format|
-      if @response.survey.status == "Published" 
-        @response.save
-        format.json { render json: {message: "Survey created successfully"} }
-      else
-        format.json { render status: :unprocessable_entity, json: {message: "Survey not published"}  }
-      end
-    end
-  end
+    if @response.survey.status == "Published" 
+      @response.save
+      render json: {message: "Survey created successfully"} 
+    else
+     render status: :unprocessable_entity, json: {message: "Survey not published"}  
+   end  
+ end
 
   # PATCH/PUT /responses/1
   # PATCH/PUT /responses/1.json
@@ -59,11 +57,11 @@ class ResponsesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_response
-      @response = Response.find(params[:id])
+      #@response = Response.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def response_params
       params.require(:response).permit(:survey_id, answers_attributes:[:option_id,:value,:question_id])
     end
-end
+  end
