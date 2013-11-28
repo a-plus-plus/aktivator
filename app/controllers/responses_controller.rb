@@ -43,7 +43,6 @@ end
     @response.destroy
     head :no_content 
   end
-end
 
 private
   # Use callbacks to share common setup or constraints between actions.
@@ -55,4 +54,4 @@ private
   def response_params
     params.require(:response).permit(:survey_id, answers_attributes:[:option_id,:value,:question_id])
   end
-  end
+
