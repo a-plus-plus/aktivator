@@ -1,5 +1,5 @@
 class ResponsesController < ApplicationController
-  before_action :set_response, only: [:show, :edit, :update, :destroy]
+  before_action :set_response, only: [:edit, :update, :destroy]
   
   skip_before_filter  :authenticate_user_from_token!, only: [:create, :index, :show]
   skip_before_filter :authenticate_user!, only: [:create, :index, :show]
