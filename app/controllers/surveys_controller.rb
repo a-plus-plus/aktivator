@@ -51,10 +51,7 @@ class SurveysController < ApplicationController
   # DELETE /surveys/1.json
   def destroy
     @survey.destroy
-    respond_to do |format|
-      format.html { redirect_to surveys_url }
-      format.json { head :no_content }
-    end
+    render json: {message: "Survey not published"}
   end
 
   private
