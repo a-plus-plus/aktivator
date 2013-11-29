@@ -2,6 +2,7 @@ class Survey < ActiveRecord::Base
 	scope :published, -> { where(status: "Published") }
 	scope :finished, -> { where(status: "Finished") }
 	scope :unpublished, -> { where(status: "Unpublished") }
+	scope :showable, -> { where(status: ["Published", "Finished"])}
 
 	belongs_to :user, inverse_of: :surveys
 	has_many :questions, inverse_of: :survey, dependent: :destroy

@@ -7,7 +7,7 @@ class SurveysController < ApplicationController
   # GET /surveys.json
   def index
     #If authenticated show all, else only published and finished
-    authenticate_user_from_token! ? @surveys = Survey.all : @surveys = Survey.published + Survey.finished
+    authenticate_user_from_token! ? @surveys = Survey.all : @surveys = Survey.showable
   end
 
   # GET /surveys/1
