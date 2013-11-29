@@ -53,7 +53,7 @@ class SurveysController < ApplicationController
     @survey.destroy
     respond_to do |format|
       format.html { redirect_to surveys_url }
-      format.json { head :no_content }
+      format.json json: {message: "Survey destroyed"}
     end
   end
 

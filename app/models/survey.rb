@@ -4,9 +4,9 @@ class Survey < ActiveRecord::Base
 	scope :unpublished, -> { where(status: "Unpublished") }
 
 	belongs_to :user, inverse_of: :surveys
-	has_many :questions, inverse_of: :survey
-	has_many :responses, inverse_of: :survey
-	has_many :options, through: :questions
+	has_many :questions, inverse_of: :survey, dependent: :destroy
+	has_many :responses, inverse_of: :survey, dependent: :destroy
+	has_many :options, through: :questions, dependent: :destroy
 	has_many :taggings
 	has_and_belongs_to_many :tags 
 
