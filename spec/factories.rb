@@ -27,7 +27,6 @@ FactoryGirl.define do
 		survey
 	end
 
-
 	factory :user do
 		sequence(:name) {|n| "Teppo Testaaja#{n}"}
 		sequence(:email) {|k| "maili#{k}@mappi.com"} 
@@ -36,9 +35,7 @@ FactoryGirl.define do
 	end
 
 	factory :tag do
-		title "sopiva tagiotsikko"
+		sequence(:title) {|n| "sopiva tagiotsikko#{n}"}
 	end
-
-
 
 end
