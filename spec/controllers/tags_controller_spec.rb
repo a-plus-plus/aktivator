@@ -20,17 +20,14 @@ describe TagsController do
 
 
 #TODO: get uses authenticate_user_from_token!, user_logged_in doesn't work here!
-# describe "GET index logged in" do 
-#  	it "sends a list of all tags" do
-#  		tags = FactoryGirl.create_list(:tag, 10)
-#  		p "Tags: #{tags}"
-#  		get :index
-#  		p "Response: #{response.body}"
-#  		p "JSON: #{json}"
-#  		expect(response).to be_success
-#  		#json.should have(10).items   
-#   end
-# end
+describe "GET index logged in" do 
+ 	it "sends a list of all tags" do
+ 		tags = FactoryGirl.create_list(:tag, 10)
+ 		get :index
+ 		expect(response).to be_success
+ 		json.should have(10).items   
+  end
+end
 
 describe "GET show/:id" do 
  	it "sends tag to corresponding id " do
@@ -42,21 +39,7 @@ describe "GET show/:id" do
  		json['id'].should == tag.id 
   end
 end
-
-# describe "GET index not logged in" do 
-# 	it "returns only published and finished" do
-# 		sign_out :user
-
-# 		survey = Survey.create! valid_attributes
-# 		unpublished = FactoryGirl.create(:survey, status: "Unpublished")
-# 		finished = FactoryGirl.create(:survey, status: "Finished")
-
-# 		get :index
-# 		expect(response).to be_success
-# 		json.should have(2).items
-# 		json.all? {|status| status.value?('Unpublished') }.should be_false
-# 	end
-# end  
+ 
 
 end
 
