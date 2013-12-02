@@ -4,7 +4,6 @@ class SessionsController < Devise::SessionsController
   
   def create
     resource = User.find_for_database_authentication(name: params[:user][:name])
-    # debugger
     return failure unless resource
     return failure unless resource.valid_password?(params[:user][:password])
     handle_success(resource)
