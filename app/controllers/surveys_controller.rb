@@ -1,13 +1,12 @@
 class SurveysController < ApplicationController
   before_action :set_survey, only: [:show, :edit, :update, :destroy]
 
-  skip_before_filter  :authenticate_user_from_token!, only: [:index, :show]
   skip_before_filter :authenticate_user!, only: [:index, :show]
 
   # GET /surveys.json
   def index
     #If authenticated show all, else only published and finished
-    authenticate_user_from_token! ? @surveys = Survey.all : @surveys = Survey.showable
+    user_signed_in? ? @surveys = Survey.includes({questions: :options}, :tags) : @surveys = Survey.showable.includes({questions: :options}, :tags)
   end
 
   # GET /surveys/1

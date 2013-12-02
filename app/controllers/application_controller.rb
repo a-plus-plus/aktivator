@@ -23,7 +23,6 @@ class ApplicationController < ActionController::Base
   private
     
   def authenticate_user_from_token!
-  	p "#{request.headers['name']}"
     auth_service = AuthenticationService.new
     user = auth_service.authenticated?(request.headers["name"], request.headers["token"])
     sign_in user, store: false if user
