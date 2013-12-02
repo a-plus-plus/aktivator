@@ -77,9 +77,23 @@ end
   describe "POST create" do
     describe "with valid params" do
       it "creates a new Survey" do
+        #permit(:user_id, :status, :title, :id, {:questions_attributes => [:id, :title, :kind, :_destroy,
+        #options_attributes: [:id, :value, :_destroy]]} , { :tag_ids => [] } )
+        json = 
+        { 
+          :format => 'json', 
+          :survey => { :title => "Survey123", :user_id => 1, :status => "Published",
+          :questions_attributes => [{:title => "Question 1", :kind => "Checkbox", :options_attributes => [{:value => "Option 1"}]}] }
+        }
+
         expect {
-          post :create, {:survey => valid_attributes}, valid_session
+          post :create, json
         }.to change(Survey, :count).by(1)
+        
+        survey = assigns(:survey)
+        expect(survey.title).to eq("Survey123")
+        expect(survey.questions.first.title).to eq("Question 1")
+        expect(survey.questions.first.options.first.value).to eq("Option 1")
       end
 
       it "assigns a newly created survey as @survey" do
@@ -94,7 +108,7 @@ end
       it "assigns a newly created but unsaved survey as @survey" do
         # Trigger the behavior that occurs when invalid params are submitted
         Survey.any_instance.stub(:save).and_return(false)
-        post :create, {:survey => { "title" => "invalid value" }}, valid_session
+        post :create, {:survey => { "title" => "invalid parameters" }}, valid_session
         assigns(:survey).should be_a_new(Survey)
       end
 
