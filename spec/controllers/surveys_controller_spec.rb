@@ -77,21 +77,22 @@ end
   describe "POST create" do
     describe "with valid params" do
       it "creates a new Survey" do
-        #permit(:user_id, :status, :title, :id, {:questions_attributes => [:id, :title, :kind, :_destroy,
-        #options_attributes: [:id, :value, :_destroy]]} , { :tag_ids => [] } )
+        FactoryGirl.create(:tag, title: "Tag1")
         json = 
         { 
           :format => 'json', 
           :survey => { :title => "Survey123", :user_id => 1, :status => "Published",
-          :questions_attributes => [{:title => "Question 1", :kind => "Checkbox", :options_attributes => [{:value => "Option 1"}]}] }
+          :questions_attributes => [{:title => "Question 1", :kind => "Checkbox", :options_attributes => [{:value => "Option 1"}]}],
+          :tag_ids => [1] }
         }
 
         expect {
           post :create, json
         }.to change(Survey, :count).by(1)
-        
+
         survey = assigns(:survey)
         expect(survey.title).to eq("Survey123")
+        expect(survey.tags.first.title).to eq("Tag1")
         expect(survey.questions.first.title).to eq("Question 1")
         expect(survey.questions.first.options.first.value).to eq("Option 1")
       end
