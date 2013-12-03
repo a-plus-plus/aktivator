@@ -11,8 +11,9 @@ class ResponsesController < ApplicationController
 
   # GET /responses/1{.json}
   def show
-    @responses = Response.where(survey_id: params[:id])
-    @questions = Question.where(survey_id: params[:id])
+    @responses = Response.where(survey_id: params[:id]).includes({options: :answers})
+    @questions = Question.where(survey_id: params[:id]).includes({options: :answers})
+    #{questions: :options}
     
   end
 

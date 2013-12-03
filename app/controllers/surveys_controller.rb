@@ -6,7 +6,7 @@ class SurveysController < ApplicationController
   # GET /surveys.json
   def index
     #If authenticated show all, else only published and finished
-    user_signed_in? ? @surveys = Survey.includes({questions: :options}, :tags) : @surveys = Survey.showable.includes({questions: :options}, :tags)
+    user_signed_in? ? @surveys = Survey.all : @surveys = Survey.showable
   end
 
   # GET /surveys/1
@@ -56,7 +56,7 @@ class SurveysController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_survey
-      @survey = Survey.find(params[:id])
+      @survey = Survey.includes({questions: :options}, :tags).find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

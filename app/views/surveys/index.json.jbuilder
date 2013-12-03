@@ -1,1 +1,5 @@
-json.array! @surveys, partial: 'surveys/survey', as: :survey
+json.array! @surveys do |survey|
+	json.title survey.title
+	json.status survey.status
+	json.id survey.id
+end
