@@ -11,18 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131115125215) do
+ActiveRecord::Schema.define(version: 20131115094156) do
 
   create_table "answers", force: true do |t|
     t.integer  "option_id"
+    t.integer  "question_id"
     t.text     "value"
     t.integer  "response_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "question_id"
   end
 
   add_index "answers", ["option_id"], name: "index_answers_on_option_id"
+  add_index "answers", ["question_id"], name: "index_answers_on_question_id"
   add_index "answers", ["response_id"], name: "index_answers_on_response_id"
 
   create_table "options", force: true do |t|
@@ -50,6 +51,8 @@ ActiveRecord::Schema.define(version: 20131115125215) do
     t.datetime "updated_at"
   end
 
+  add_index "responses", ["survey_id"], name: "index_responses_on_survey_id"
+
   create_table "surveys", force: true do |t|
     t.string   "title"
     t.string   "status"
@@ -58,16 +61,11 @@ ActiveRecord::Schema.define(version: 20131115125215) do
     t.datetime "updated_at"
   end
 
+  add_index "surveys", ["user_id"], name: "index_surveys_on_user_id"
+
   create_table "surveys_tags", id: false, force: true do |t|
     t.integer "survey_id"
     t.integer "tag_id"
-  end
-
-  create_table "taggings", force: true do |t|
-    t.integer  "survey_id"
-    t.integer  "tag_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
   end
 
   create_table "tags", force: true do |t|
@@ -81,19 +79,11 @@ ActiveRecord::Schema.define(version: 20131115125215) do
     t.string   "password"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "password_confirmation"
-    t.string   "password_digest"
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip"
-    t.string   "last_sign_in_ip"
-    t.string   "authentication_token"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
