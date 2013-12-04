@@ -7,11 +7,21 @@ class SurveysController < ApplicationController
   def index
     #If authenticated show all, else only published and finished
     user_signed_in? ? @surveys = Survey.all : @surveys = Survey.showable
+    @current_user = current_user 
   end
 
   # GET /surveys/1
   # GET /surveys/1.json
   def show
+    if user_signed_in?
+      return @survey
+    elsif @survey.status == "Unpublished"
+      render status: :unauthorized
+    end
+  end
+
+  def answer
+
   end
 
   # POST /surveys
@@ -50,7 +60,7 @@ class SurveysController < ApplicationController
   # DELETE /surveys/1.json
   def destroy
     @survey.destroy
-    render json: {message: "Survey not published"}
+    render json: {message: "Survey not destroyed"}
   end
 
   private
