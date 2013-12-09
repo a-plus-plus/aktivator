@@ -12,7 +12,7 @@ gem 'aes', '~> 0.5.0'
 group :development, :test do
   gem 'sqlite3'
   gem 'rspec-rails', '~> 2.0'
-  gem 'debugger'
+  #gem 'debugger'
 end
 
 group :development do 
