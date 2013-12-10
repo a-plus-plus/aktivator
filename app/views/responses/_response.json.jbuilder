@@ -1,3 +1,4 @@
+json.answer_count @responses.count
 json.questions (@questions) do |question|
 	json.title question.title
     json.kind question.kind
