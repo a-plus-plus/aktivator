@@ -90,34 +90,4 @@ describe ResponsesController do
 
   end
 
-  describe "PUT update" do
-    describe "with valid params" do
-      it "updates the requested response" do
-        response = Response.create! valid_attributes
-        # Assuming there are no other responses in the database, this
-        # specifies that the Response created on the previous line
-        # receives the :update_attributes message with whatever params are
-        # submitted in the request.
-        Response.any_instance.should_receive(:update).with({ "survey_id" => "1" })
-        put :update, {:id => response.to_param, :response => { "survey_id" => "1" }}, valid_session
-      end
-
-      it "assigns the requested response as @response" do
-        response = Response.create! valid_attributes
-        put :update, {:id => response.to_param, :response => valid_attributes}, valid_session
-        assigns(:response).should eq(response)
-      end
-    end
-
-    describe "with invalid params" do
-      it "assigns the response as @response" do
-        response = Response.create! valid_attributes
-        # Trigger the behavior that occurs when invalid params are submitted
-        Response.any_instance.stub(:save).and_return(false)
-        put :update, {:id => response.to_param, :response => { "survey_id" => "invalid value" }}, valid_session
-        assigns(:response).should eq(response)
-      end
-    end
-  end
-
 end
