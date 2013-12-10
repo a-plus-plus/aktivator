@@ -1,22 +1,25 @@
 Aktivator::Application.routes.draw do
 
+  # Skip predefined devise methods for session and creation
   devise_for :users, :skip => [:sessions, :create], defaults: {format: :json}
+
+
   as :user do
     post   '/login'   => 'sessions#create', defaults: {format: :json}
     delete '/logout'  => 'sessions#destroy', defaults: {format: :json}
   end
 
-  resources :responses,:options,:tags,:questions,:users, defaults: {format: :json}
+  resources :surveys, :responses,:tags,:users, defaults: {format: :json}
 
   root to: "surveys#index"
 
-  resources :surveys, defaults: {format: :json} do 
-    resources :questions, defaults: {format: :json} do 
-      resources :options, defaults: {format: :json}
-    end
-  end
+  # resources :surveys, defaults: {format: :json} do 
+  #   resources :questions, defaults: {format: :json} do 
+  #     resources :options, defaults: {format: :json}
+  #   end
+  # end
 
-  get 'surveys/:id/answer' => 'surveys#answer', as: :survey_answer
+  # get 'surveys/:id/answer' => 'surveys#answer', as: :survey_answer
 
 
   # The priority is based upon order of creation: first created -> highest priority.

@@ -4,7 +4,7 @@ class TagsController < ApplicationController
   skip_before_filter :authenticate_user!, only: [:index, :show]
 
   # GET /tags
-  # GET /tags.json
+  # If signed in, show all tags and surveys within them, else only those with showable surveys
   def index
     if user_signed_in?
       @tags = Tag.all.includes(:surveys)
@@ -14,7 +14,6 @@ class TagsController < ApplicationController
   end
 
   # GET /tags/1
-  # GET /tags/1.json
   def show
    # render json: @tag
  end

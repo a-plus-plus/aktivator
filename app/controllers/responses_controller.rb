@@ -1,23 +1,24 @@
 class ResponsesController < ApplicationController
+
   before_action :set_response, only: [:edit, :update, :destroy]
   
+  # Authentication filtering
   skip_before_filter  :authenticate_user_from_token!, only: [:create, :index, :show]
   skip_before_filter :authenticate_user!, only: [:create, :index, :show]
   
-  # GET /responses{.json}
+  # GET /responses
   def index
     @responses = Response.all
   end
 
-  # GET /responses/1{.json}
+  # GET /responses/1
+  # Get responses and questions of survey with :id
   def show
     @responses = Response.where(survey_id: params[:id]).includes({options: :answers})
     @questions = Question.where(survey_id: params[:id]).includes({options: :answers})
-    #{questions: :options}
-    
   end
 
-  # POST /responses{.json}
+  # POST /responses
   def create
     @response = Response.new(response_params)
     #Save only if survey status is published.
@@ -29,7 +30,7 @@ class ResponsesController < ApplicationController
    end  
  end
 
-  # PATCH/PUT /responses/1{.json}
+  # PATCH/PUT /responses/1
   def update
     if @response.update(response_params)
       head :no_content 
@@ -39,7 +40,7 @@ class ResponsesController < ApplicationController
   end
 end
 
-  # DELETE /responses/1{.json}
+  # DELETE /responses/1
   def destroy
     @response.destroy
     head :no_content 

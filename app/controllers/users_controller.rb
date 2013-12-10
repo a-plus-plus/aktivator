@@ -1,16 +1,15 @@
 class UsersController < ApplicationController
+
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   skip_before_filter  :authenticate_user_from_token!, only: [:create, :index]
   skip_before_filter :authenticate_user!, only: [:create, :index]
 
   # GET /Users
-  # GET /Users.json
   def index
     @users = User.all
   end
 
   # GET /Users/1
-  # GET /Users/1.json
   def show
    # render json: @user
   end
@@ -25,7 +24,6 @@ class UsersController < ApplicationController
   end
 
   # POST /Users
-  # POST /Users.json
   def create
     @user = User.new(user_params)
     respond_to do |format|
@@ -40,7 +38,6 @@ class UsersController < ApplicationController
   end
 
   # PATCH/PUT /Users/1
-  # PATCH/PUT /Users/1.json
   def update
     respond_to do |format|
       if @user.update(user_params)
@@ -54,7 +51,6 @@ class UsersController < ApplicationController
   end
 
   # DELETE /Users/1
-  # DELETE /Users/1.json
   def destroy
     @user.destroy
     respond_to do |format|

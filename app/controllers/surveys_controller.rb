@@ -3,15 +3,15 @@ class SurveysController < ApplicationController
 
   skip_before_filter :authenticate_user!, only: [:index, :show]
 
-  # GET /surveys.json
+  # GET /surveys
+  # If authenticated show all surveys, else only those with status Published or Finished
   def index
-    #If authenticated show all, else only published and finished
     user_signed_in? ? @surveys = Survey.all : @surveys = Survey.showable
     @current_user = current_user 
   end
 
   # GET /surveys/1
-  # GET /surveys/1.json
+  # Don't return Unpublished surveys to unauthorized user
   def show
     if user_signed_in?
       return @survey
@@ -20,12 +20,7 @@ class SurveysController < ApplicationController
     end
   end
 
-  def answer
-
-  end
-
   # POST /surveys
-  # POST /surveys.json
   def create
     @survey = Survey.new(survey_params)
     @survey.user = current_user

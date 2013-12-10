@@ -9,8 +9,4 @@ class Question < ActiveRecord::Base
 
   accepts_nested_attributes_for :options, allow_destroy: true
   
-
-  def to_s
-  	"#{title}: #{kind}"
-  end
 end

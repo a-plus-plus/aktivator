@@ -120,13 +120,4 @@ describe ResponsesController do
     end
   end
 
-  # describe "DELETE destroy" do
-  #   it "destroys the requested response" do
-  #     response = Response.create! valid_attributes
-  #     expect {
-  #       delete :destroy, {:id => response.to_param}, valid_session
-  #     }.to change(Response, :count).by(-1)
-  #   end
-  # end
-
 end
