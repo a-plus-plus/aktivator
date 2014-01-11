@@ -1,9 +1,9 @@
 source 'https://rubygems.org'
 ruby '2.0.0'
 
-gem 'rails', '4.0.1' # Bundle edge Rails instead: gem 'rails', github: 'rails/rails
+gem 'rails', '4.0.2' # Bundle edge Rails instead: gem 'rails', github: 'rails/rails
 gem 'table_print'
-gem 'devise' # User authentication 
+gem 'devise' # User authentication
 gem 'jbuilder', '~> 1.2' # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'rack-cors', :require => 'rack/cors' # Make CORS possible
 # Use sqlite3 as the database for Active Record in development and test enviroment
@@ -15,7 +15,7 @@ group :development, :test do
   #gem 'debugger'
 end
 
-group :development do 
+group :development do
    gem 'guard-rspec', require: false # Test-watch tool
    gem 'terminal-notifier-guard', require:false # Guard popups for OSX
    gem 'libnotify', require:false # Guard popups for linux
@@ -23,7 +23,7 @@ end
 
 group :production do
    gem 'pg' # Use PostgreSQL as the database for Active Record in development
-   gem 'rails_stdout_logging' 
+   gem 'rails_stdout_logging'
    gem 'rails_12factor' # Heroku requires this
 end
 
@@ -34,6 +34,6 @@ end
 group :test do
   gem 'factory_girl_rails' # Generate fixtures to tests with Factory Girl
   gem 'capybara' # Headless browser testing
-  gem 'launchy' 
+  gem 'launchy'
   gem 'simplecov', :require => false # Coverage
 end
