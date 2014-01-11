@@ -1,11 +1,11 @@
 class ResponsesController < ApplicationController
 
   before_action :set_response, only: [:edit, :update, :destroy]
-  
+
   # Authentication filtering
   skip_before_filter  :authenticate_user_from_token!, only: [:create, :index, :show]
   skip_before_filter :authenticate_user!, only: [:create, :index, :show]
-  
+
   # GET /responses
   def index
     @responses = Response.all
@@ -22,20 +22,20 @@ class ResponsesController < ApplicationController
   def create
     @response = Response.new(response_params)
     #Save only if survey status is published.
-    if @response.survey.status == "Published" 
+    if @response.survey.status == "Published"
       @response.save
-      render json: {message: "Survey created successfully"} 
+      render json: {message: "Survey created successfully"}
     else
-     render status: :unprocessable_entity, json: {message: "Survey not published"}  
-   end  
+     render status: :unprocessable_entity, json: {message: "Survey not published"}
+   end
  end
 
   # PATCH/PUT /responses/1
   def update
     if @response.update(response_params)
-      head :no_content 
+      head :no_content
     else
-      render json: @response.errors, status: :unprocessable_entity 
+      render json: @response.errors, status: :unprocessable_entity
     end
   end
 end
@@ -43,7 +43,7 @@ end
   # DELETE /responses/1
   def destroy
     @response.destroy
-    head :no_content 
+    head :no_content
   end
 
 private

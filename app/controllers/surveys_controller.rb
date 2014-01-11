@@ -7,7 +7,7 @@ class SurveysController < ApplicationController
   # If authenticated show all surveys, else only those with status Published or Finished
   def index
     user_signed_in? ? @surveys = Survey.all : @surveys = Survey.showable
-    @current_user = current_user 
+    @current_user = current_user
   end
 
   # GET /surveys/1

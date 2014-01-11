@@ -14,9 +14,9 @@ module Security
     self.authentication_token = ""
     self.save!
   end
- 
+
   private
-  
+
   # Generation of authentication token with the help of Devise
   def generate_authentication_token
     loop do

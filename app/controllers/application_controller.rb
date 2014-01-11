@@ -8,9 +8,9 @@ class ApplicationController < ActionController::Base
   before_filter :authenticate_user_from_token!
   before_filter :authenticate_user!
 
-  # Respond only to JSON 
+  # Respond only to JSON
   respond_to :json
-  
+
   def resource_name
     :user
   end
@@ -24,8 +24,8 @@ class ApplicationController < ActionController::Base
   end
 
   private
-    
-  # Primary method for token authentication, checks AES-encrypted name- and header-tokens 
+
+  # Primary method for token authentication, checks AES-encrypted name- and header-tokens
   def authenticate_user_from_token!
     auth_service = AuthenticationService.new
     user = auth_service.authenticated?(request.headers["name"], request.headers["token"])

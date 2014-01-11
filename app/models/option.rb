@@ -4,5 +4,4 @@ class Option < ActiveRecord::Base
   validates :value, length: {maximum: 256}
   validates :value, presence: true
   has_many :answers
-
 end
